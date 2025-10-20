@@ -1,0 +1,168 @@
+/* Importa a fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* --- Estilos Globais --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa; /* Fundo de um cinza ainda mais claro */
+    color: #212529; /* Texto quase preto para alto contraste */
+}
+
+/* --- Layout Principal --- */
+.main-content {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+}
+
+.content-card {
+    background-color: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6; /* Borda sutil no card */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.content-card h1 {
+    text-align: center;
+    color: #212529;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* --- Estilos da Tabela (Para Lista e Detalhes) --- */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.table-container {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+th, td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+thead th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+tbody tr:hover {
+    background-color: #e9ecef;
+}
+tbody td {
+    color: #495057;
+}
+.acoes-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+
+/* --- Estilos de Formulário (Para Cadastrar) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+label {
+    display: block;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+input:focus {
+    outline: none;
+    border-color: #495057;
+    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+}
+.error-message {
+    color: #dc3545; /* Erro é a única exceção de cor por usabilidade crítica */
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* --- Estilos de Botões (Monocromáticos) --- */
+.botao {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+.botao-principal, .botao-salvar {
+    background-color: #343a40; /* Cinza escuro */
+    color: #fff;
+    border-color: #343a40;
+}
+.botao-principal:hover, .botao-salvar:hover {
+    background-color: #212529; /* Quase preto */
+    border-color: #212529;
+}
+.botao-acao {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #6c757d; /* Borda cinza médio */
+}
+.botao-detalhes, .botao-editar {
+    background-color: transparent;
+    color: #343a40; /* Texto escuro */
+}
+.botao-detalhes:hover, .botao-editar:hover {
+    background-color: #f8f9fa; /* Fundo cinza claro no hover */
+}
+.botao-excluir {
+    background-color: transparent;
+    color: #dc3545; /* Texto vermelho para indicar perigo */
+    border-color: #dc3545;
+}
+.botao-excluir:hover {
+    background-color: #dc3545; /* Fundo fica vermelho no hover */
+    color: #fff;
+}
+
+/* --- Estilo do Rodapé (Monocromático) --- */
+footer {
+    background-color: #343a40; /* Cinza escuro */
+    color: #f8f9fa;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}

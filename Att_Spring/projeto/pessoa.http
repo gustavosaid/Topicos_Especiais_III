@@ -1,13 +1,13 @@
 # Definição de variáveis (ambiente “local” do REST Client)
-@base_url = https://curly-winner-vj4gvqqjqp93x5rj-8080.app.github.dev
+@base_url = https://curly-winner-vj4gvqqjqp93x5rj-7070.app.github.dev/
 
 ### Inserir nova pessoa
 POST {{ base_url }}/api/pessoas
 Content-Type: application/json
 
 {
-  "nome": "Gabriel",
-  "idade": 28
+  "nome": "Lili cantou",
+  "idade": 69
 }
 
 ### Listar todas as pessoas
@@ -15,7 +15,7 @@ GET {{ base_url }}/api/pessoas
 Accept: application/json
 
 ### Buscar pessoa por ID
-GET {{ base_url }}/api/pessoas/3
+GET {{ base_url }}/api/pessoas/11
 Accept: application/json
 
 ### Atualizar pessoa (PUT)
@@ -28,5 +28,5 @@ Content-Type: application/json
 }
 
 ### Remover pessoa (DELETE)
-DELETE {{ base_url }}/api/pessoas/1
+DELETE {{ base_url }}/api/pessoas/11
 Accept: */*

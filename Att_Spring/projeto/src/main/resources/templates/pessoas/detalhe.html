@@ -4,44 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Pessoa</title>
-     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Estilo principal (Navbar, fontes, etc.) -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Estilo específico para a página de conteúdo -->
+    <link rel="stylesheet" th:href="@{/css/detalhes.css}">
 </head>
 
+
+<!-- <script>
+  // URL da API
+  const url = "https://curly-winner-vj4gvqqjqp93x5rj-8080.app.github.dev";
+
+  // Se precisar de cabeçalhos (ex: token de autenticação)
+  const headers = {
+    "Authorization": "Bearer SUA_CHAVE_AQUI"
+  };
+
+  // Fazendo a requisição
+  fetch(url, { headers })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro na requisição: " + response.status);
+      }
+      return response.json(); // converte a resposta em JSON
+    })
+    .then(data => {
+      console.log("Dados recebidos:", data);
+
+      // Exemplo: mostrar no HTML
+      document.getElementById("saida").innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => {
+      console.error("Erro:", error);
+    });
+</script>
+
+<div id="saida"></div> -->
+
 <body>
-
     <div th:replace="fragments/navbar :: navbar"></div>
-
     <main class="main-content">
-        <h1>Detalhes</h1>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td th:text="${pessoa.id}"></td>
-                    <td th:text="${pessoa.nome}"></td>
-                    <td th:text="${pessoa.idade}"></td>
-                    <td>
-                        <form th:action="@{/pessoas/{id}/excluir(id=${pessoa.id})}" method="post">
-                            <button type="submit" class="botao">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="content-card"> <!-- <<< ADICIONE ESTA DIV -->
+            <h1>Detalhes</h1>
 
+            <div class="table-container"> <!-- <<< E ESTA DIV -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${pessoa.id}"></td>
+                            <td th:text="${pessoa.nome}"></td>
+                            <td th:text="${pessoa.idade}"></td>
+                            <td>
+                                <form th:action="@{/pessoas/{id}/excluir(id=${pessoa.id})}" method="post">
+                                    <button type="submit" class="botao-excluir">Excluir</button>
+                                    <!-- Renomeei para ser mais específico -->
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </main>
 
-    <footer>
+    <!-- <footer>
         <p>2025 Meu App</p>
-    </footer>
+    </footer> -->
 </body>
 
 </html>
