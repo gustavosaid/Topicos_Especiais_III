@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Navbar</title>
+    <style>
+        /* Estilos gerais para a página (apenas para exemplo) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+
+        /* --- Estilos da Navbar --- */
+        .navbar {
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Alinha o logo/links */
+            align-items: center;
+            /* Permite que os itens do menu fiquem um sobre o outro em telas pequenas */
+            flex-wrap: wrap; 
+        }
+
+        /* Lista de links */
+        .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Coloca os links lado a lado */
+            gap: 20px; /* Espaço entre os links */
+        }
+
+        /* Estilo de cada link */
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        /* Efeito hover (sublinhado) */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #007bff; /* Cor do sublinhado */
+            transform-origin: bottom left;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-link:hover {
+            color: #ddd;
+        }
+        
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* --- Lógica do Menu Hambúrguer (Mobile) --- */
+
+        /* O checkbox que controla o menu (fica escondido) */
+        #menu-checkbox {
+            display: none;
+        }
+
+        /* O ícone ☰ (hambúrguer) */
+        .menu-toggle {
+            display: none; /* Escondido por padrão (em telas grandes) */
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none; /* Impede de selecionar o texto '☰' */
+        }
+
+        /* Media Query: Aplica estes estilos APENAS em telas pequenas (ex: celulares) */
+        @media (max-width: 768px) {
+            
+            /* Mostra o ícone ☰ */
+            .menu-toggle {
+                display: block; 
+            }
+
+            /* A lista de links fica escondida por padrão */
+            .nav-list {
+                display: none;
+                width: 100%; /* Ocupa a largura total */
+                flex-direction: column; /* Links um abaixo do outro */
+                text-align: center;
+                margin-top: 15px; /* Espaço abaixo do ícone */
+            }
+
+            .nav-list li {
+                padding: 10px 0; /* Espaçamento vertical nos links */
+                border-top: 1px solid #444; /* Linha separadora */
+            }
+
+            /* A MÁGICA: Quando o checkbox é marcado (clicado)...
+              ... a lista de links (.nav-list) que é "irmã" dele é exibida.
+            */
+            #menu-checkbox:checked ~ .nav-list {
+                display: flex;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 
+      Navbar convertida para HTML estático.
+      Troquei os links dinâmicos por '#'
+    -->
+    <nav class="navbar">
+        <!-- checkbox para toggle -->
+        <input type="checkbox" id="menu-checkbox" hidden>
+        
+        <!-- (Opcional) Adicionei um "Logo" para ficar mais real -->
+        <div class="logo">
+            <a href="#" style="color: white; text-decoration: none; font-size: 1.5em; font-weight: bold;">Meu App</a>
+        </div>
+        
+        <label for="menu-checkbox" class="menu-toggle">☰</label>
+
+        <ul class="nav-list">
+            <li><a href="{% url 'index' %}" class="nav-link">Lista</a></li>
+            <li><a href="{%url 'cadastrarPessoa' %}" class="nav-link">Cadastrar</a></li>
+        </ul>
+    </nav>
+
+
+</body>
+</html>

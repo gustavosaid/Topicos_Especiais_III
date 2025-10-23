@@ -1,0 +1,99 @@
+/* --- Estilo Principal do Conteúdo --- */
+.main-content {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto; /* Centraliza o conteúdo na página */
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Efeito de Cartão para o Conteúdo --- */
+.content-card {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação sutil */
+}
+
+/* --- Título Principal --- */
+.content-card h1 {
+    text-align: center;
+    color: #2C3E50; /* Mesma cor da navbar para consistência */
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* --- Estilização da Tabela --- */
+.table-container {
+    overflow-x: auto; /* Garante que a tabela role horizontalmente em telas pequenas */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre as células */
+    font-size: 1rem;
+}
+
+/* Estilo para Células do Cabeçalho e do Corpo */
+th, td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0; /* Linha sutil separando as linhas */
+}
+
+/* Cabeçalho da Tabela */
+thead {
+    background-color: #4A6E8A; /* Tom de azul da navbar */
+    color: #ffffff;
+}
+
+thead th {
+    font-weight: 600;
+    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+    letter-spacing: 0.5px;
+}
+
+/* Corpo da Tabela */
+tbody tr:hover {
+    background-color: #f9f9f9; /* Fundo leve ao passar o mouse */
+}
+
+tbody td {
+    color: #555;
+}
+
+/* --- Botão de Ação (Excluir) --- */
+.botao-excluir {
+    background-color: #E74C3C; /* Vermelho para indicar uma ação de perigo/exclusão */
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif; /* Garante a mesma fonte do resto do site */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botao-excluir:hover {
+    background-color: #C0392B; /* Vermelho mais escuro no hover */
+    transform: scale(1.05); /* Leve aumento de tamanho */
+}
+
+/* --- Estilo do Rodapé --- */
+footer {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}

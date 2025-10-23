@@ -1,0 +1,54 @@
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 🚨 MUDANÇA IMPORTANTE AQUI
+            // Em vez da URL externa, chamamos a URL local do Django
+            const apiUrl = '/api/dados-externos/'; 
+            
+            // O resto do seu script fetch continua igual
+            const tbody = document.getElementById('tabela-corpo');
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Carregando dados...</td></tr>';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(pessoas => {
+                    // ... (o resto do código que preenche a tabela)
+                    tbody.innerHTML = ''; // Limpa a tabela
+                    
+                    // Verifica se o Django retornou um erro
+                    if (pessoas.erro) {
+                         throw new Error(pessoas.erro);
+                    }
+                    
+                    pessoas.forEach(pessoa => {
+                        const tr = document.createElement('tr');
+                        // ... (criação das <td>, etc.)
+                         tr.innerHTML = `
+                            <td>${pessoa.id}</td>
+                            <td>${pessoa.nome}</td>
+                            <td>${pessoa.idade}</td>
+                            <td class="acoes-cell">
+                                <a href="#" class="botao-acao botao-detalhes">Detalhes</a>
+                                <form action="#" method="post">
+                                    <button type="submit" class="botao-acao botao-excluir">Excluir</button>
+                                </form>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar dados:', error);
+                    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:red;"><b>Erro:</b> ${error.message}</td></tr>`;
+                });
+        });
+    </script>
+
+</body>
+</html>

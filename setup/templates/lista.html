@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Lista de Pessoas</title>
+    <style>
+        /* Cole aqui todo o CSS da tabela (style.css, lista.css) */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+
+        .main-content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .content-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .list-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-header h1 {
+            margin: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            padding: 0 25px 25px 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+            color: #555;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .acoes-cell {
+            display: flex;
+            gap: 10px;
+        }
+
+        .acoes-cell form {
+            margin: 0;
+        }
+
+        .botao-acao {
+            display: inline-block;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: white;
+        }
+
+        .botao-detalhes {
+            background-color: #007bff;
+        }
+
+        .botao-excluir {
+            background-color: #dc3545;
+        }
+
+        .botao-verde {
+            background-color: #28a745;
+        }
+
+        .botao-verde:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <main class="main-content">
+        <div class="content-card">
+            <div class="list-header">
+                <h1>Lista de Pessoas</h1>
+                <a href="{% url 'cadastrarPessoa' %}" class="botao-acao botao-verde">Cadastrar Nova Pessoa</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-corpo">
+                        <!-- O JavaScript vai preencher aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const apiUrl = "{% url 'api_externa' %}";
+            const tbody = document.getElementById('tabela-corpo');
+
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Carregando dados...</td></tr>';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(pessoas => {
+                    tbody.innerHTML = '';
+
+                    if (pessoas.erro) {
+                        throw new Error(pessoas.erro);
+                    }
+                    if (pessoas.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhuma pessoa encontrada.</td></tr>';
+                        return;
+                    }
+
+                    pessoas.forEach(pessoa => {
+                        const tr = document.createElement('tr');
+
+                        // --- MUDANÇA AQUI ---
+                        // O 'href' do botão Detalhes agora é dinâmico
+                        // Ele usa o 'pessoa.id' para criar o link.
+                        // (O formulário de excluir não precisa de 'action' 
+                        // pois faremos isso na página de detalhes)
+                        tr.innerHTML = `
+                            <td>${pessoa.id}</td>
+                            <td>${pessoa.nome}</td>
+                            <td>${pessoa.idade}</td>
+                            
+                            <td class="acoes-cell">
+                                <a href="/excluir/${pessoa.id}" class="botao-acao botao-detalhes">Detalhes</a>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar dados:', error);
+                    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:red;"><b>Erro:</b> ${error.message}</td></tr>`;
+                });
+        });
+    </script>
+</body>
+
+</html>

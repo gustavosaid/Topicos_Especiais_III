@@ -1,0 +1,97 @@
+
+
+/* Importa uma fonte moderna do Google Fonts para um visual mais profissional */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* --- Estilo Geral da Página (Opcional, mas recomendado) --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f4f7f6; /* Um fundo cinza claro para a página */
+}
+
+/* --- Estilo Geral da Navbar --- */
+.navbar {
+    background: linear-gradient(90deg, #2C3E50, #4A6E8A); /* Gradiente de azul escuro */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between; /* Alinha o logo (futuro) à esquerda e links à direita */
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative; /* Necessário para o menu responsivo */
+}
+
+/* --- Estilo da Lista de Links --- */
+.nav-list {
+    list-style: none; /* Remove os pontinhos da lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Coloca os links lado a lado em telas grandes */
+    gap: 2rem; /* Espaçamento entre os links */
+}
+
+/* --- Estilo dos Links --- */
+.nav-link {
+    color: #ECF0F1; /* Cor do texto (branco acinzentado) */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease; /* Transição suave para efeitos */
+}
+
+/* --- Efeito Hover (passar o mouse) nos Links --- */
+.nav-link:hover {
+    background-color: #5A8AAB; /* Fundo azul claro ao passar o mouse */
+    color: #fff;
+}
+
+/* --- Ícone do Menu Hamburger (☰) --- */
+.menu-toggle {
+    display: none; /* Escondido em telas grandes */
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* O checkbox continua escondido */
+#menu-checkbox {
+    display: none;
+}
+
+
+/* --- Media Query para Telas Pequenas (Responsividade) --- */
+@media (max-width: 768px) {
+    /* Mostra o ícone do menu hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Estilo da lista de links em telas pequenas */
+    .nav-list {
+        display: none; /* A lista começa escondida */
+        flex-direction: column; /* Links um abaixo do outro */
+        position: absolute;
+        top: 100%; /* Começa logo abaixo da navbar */
+        left: 0;
+        width: 100%;
+        background-color: #34495E; /* Um pouco mais claro que a navbar */
+        padding: 1rem 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-list li {
+        text-align: center; /* Centraliza o texto dos links */
+        margin: 0.5rem 0;
+    }
+
+    /* MÁGICA: Quando o checkbox é marcado (clicado), a nav-list é exibida! */
+    #menu-checkbox:checked ~ .nav-list {
+        display: flex;
+    }
+}
+
+
+

@@ -6,7 +6,7 @@ POST {{ base_url }}/api/pessoas
 Content-Type: application/json
 
 {
-  "nome": "teste",
+  "nome": "lili cantou",
   "idade": 28
 }
 
@@ -15,15 +15,15 @@ GET {{ base_url }}/api/pessoas
 Accept: application/json
 
 ### Buscar pessoa por ID
-GET {{ base_url }}/api/pessoas/4
+GET {{ base_url }}/api/pessoas/18
 Accept: application/json
 
 ### Atualizar pessoa (PUT)
-PUT {{ base_url }}/api/pessoas/4
+PUT {{ base_url }}/api/pessoas/18
 Content-Type: application/json
 
 {
-  "nome": "Gabriel Marinho",
+  "nome": "Tiago,
   "idade": 28
 }
 
